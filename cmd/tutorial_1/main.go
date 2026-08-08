@@ -1,9 +1,34 @@
 package main
+
 import (
-	"fmt" 
 	"errors"
+	"fmt"
 	"strings"
 )
+
+type gasEngine struct{
+	kpl uint8
+	liters uint8
+	owner
+}
+
+type electricMotor struct{
+	kmpkw uint8
+	battery uint16
+	owner
+
+}
+func (e gasEngine) kmLeft() uint16{
+	return uint16(e.kpl)*uint16(e.liters)
+}
+func(e electricMotor) kmLeft() uint16{
+	return uint16(e.kmpkw)*uint16(e.battery)
+}
+
+type owner struct{
+	name string
+	age uint8
+}
 
 func main(){
 
@@ -95,6 +120,27 @@ func main(){
 
 	catStr = strBuilder.String();
 	fmt.Println(catStr)
+	fmt.Println()
+
+	var myOwner owner = owner{"ali", 19}
+	var myEngine gasEngine = gasEngine{13, 35, myOwner}
+
+	var myEV electricMotor = electricMotor{7, 90, myOwner}
+
+	fmt.Printf("Kilometers left for engine car %v \n", myEngine.kmLeft())
+	fmt.Printf("Kilometers left for EV car %v \n", myEV.kmLeft())
+
+
+	canIMakeIt(myEngine, uint16(500))
+	
+}
+
+func canIMakeIt(e gasEngine, miles uint16){
+	if miles<= e.kmLeft() {
+		fmt.Println("Can make it")
+	} else{
+		fmt.Println("No cant make it")
+	}
 }
 
 func printMe(printValue string){
