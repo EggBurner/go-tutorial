@@ -2,6 +2,7 @@ package main
 import (
 	"fmt" 
 	"errors"
+	"strings"
 )
 
 func main(){
@@ -79,10 +80,21 @@ func main(){
 	fmt.Println(myString2)
 	fmt.Println(len(myString2))
 
-		for i, v := range myString2{
+	for i, v := range myString2{
 		fmt.Printf("%v %v \n", i,v)
 	}
 
+	var strArr = []rune{'a','b','d','u','l','l','a','h'}
+	catStr := "";
+
+	var strBuilder strings.Builder;
+
+	for _,v := range strArr{
+		strBuilder.WriteRune(v)
+	}
+
+	catStr = strBuilder.String();
+	fmt.Println(catStr)
 }
 
 func printMe(printValue string){
