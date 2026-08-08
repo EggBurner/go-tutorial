@@ -16,7 +16,10 @@ type electricMotor struct{
 	kmpkw uint8
 	battery uint16
 	owner
+}
 
+type car interface{
+	kmLeft() uint16
 }
 func (e gasEngine) kmLeft() uint16{
 	return uint16(e.kpl)*uint16(e.liters)
@@ -132,10 +135,11 @@ func main(){
 
 
 	canIMakeIt(myEngine, uint16(500))
+	canIMakeIt(myEV, uint16(500))
 	
 }
 
-func canIMakeIt(e gasEngine, miles uint16){
+func canIMakeIt(e car, miles uint16){
 	if miles<= e.kmLeft() {
 		fmt.Println("Can make it")
 	} else{
