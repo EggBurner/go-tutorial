@@ -136,7 +136,36 @@ func main(){
 
 	canIMakeIt(myEngine, uint16(500))
 	canIMakeIt(myEV, uint16(500))
+
+	var p *int16 = new(int16)
+	*p = 10;
+	var i int16 = 64
 	
+
+	fmt.Printf("The value the pointer p points to is %v\n", *p)
+	p = &i;
+	fmt.Printf("The value the pointer p points to is %v\n", *p)
+	*p = 44
+	fmt.Printf("The value the i is points to is %v\n", i)
+	fmt.Printf("The value the pointer p points to is %v\n", *p)
+
+
+	var thing1 = [5]float64{1,2,3,4,5}
+	fmt.Printf("the memory location of thing one is %p \n", &thing1)
+	var result1 [5]float64 = square(&thing1)
+
+	fmt.Printf("the result is %v \n", result1)
+	
+	
+}
+
+func square(thing2 *[5]float64) ([5]float64){
+		fmt.Printf("the memory location of thing2 is %p \n", thing2)
+	for i := range thing2{
+
+		thing2[i] = thing2[i]*thing2[i]
+	}
+	return *thing2
 }
 
 func canIMakeIt(e car, miles uint16){
