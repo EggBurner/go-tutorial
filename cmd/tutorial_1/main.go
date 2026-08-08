@@ -64,6 +64,25 @@ func main(){
 		fmt.Printf("%v %v\n",index, value)
 	}
 	fmt.Println()
+
+	myString := "résumé"
+
+	fmt.Println(len(myString))
+	fmt.Println(myString)
+
+	for i, v := range myString{
+		fmt.Printf("%v %v \n", i,v)
+	}
+
+	var myString2 = []rune("résumé")
+
+	fmt.Println(myString2)
+	fmt.Println(len(myString2))
+
+		for i, v := range myString2{
+		fmt.Printf("%v %v \n", i,v)
+	}
+
 }
 
 func printMe(printValue string){
